@@ -1,0 +1,45 @@
+html, body{  
+    height: 100%;
+}
+
+body {
+	position: block;
+    background: url("waterfall.gif") no-repeat center bottom;
+    background-size: cover;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+/* Source: https://fontlibrary.org/en/font/press-start-2p */
+@font-face {
+    font-family: 'PressStart2PRegular';
+    src: url('PressStart2PRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    font-family: 'PressStart2PRegular';
+    font-size: 32px;
+    padding-bottom: 20px;
+    color: #ffffff;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+p {
+    font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+    font-size: 18px;
+    padding-bottom: 20px;
+    color: #ffffff;
+    position: relative;
+    top: 42%;
+    transform: translateY(-50%);
+    padding-left: 5px;
+    padding-right:; 5px;
+}
+
+strong {
+    font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+}

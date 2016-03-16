@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>POST forwarder</title>
+    <link href="reset.css" rel="stylesheet" type="text/css">
+    <link href="main.css" rel="stylesheet" type="text/css">
+    <meta name="keywords" content="POST forwarding">
+    <meta name="author" content="Sveinn Floki Gudmundsson, Quan Dong Dao">
+    <link rel="icon" href="/favicon.ico">
+    <script type="text/javascript">
+    "use strict";
+    function do_post_transfer() {
+      // retrive GET params
+      var params = window.location.search;
+      var transfer_url_param = "?transfer_url=";
+      var post_params_param = "&post_params=";
+      if (!params.startsWith(transfer_url_param) || params.indexOf(post_params_param) === -1) {
+        if (params !== "") {
+          relay_feedback_message("Invalid parameters:<br /> "+params);
+        }
+        return 0;
+      }
+      var split = params.indexOf(post_params_param);
+      var transfer_url = params.substr(transfer_url_param.length, split - transfer_url_param.length);
+      var post_params = params.substr(split + post_params_param.length);
+      var url = transfer_url;
+      var data = post_params;
+      data = data.split('&');
+      // Create our new form and populate it's fields
+      var postform = document.createElement("form");
+      postform.id = 'postform';
+      postform.method = 'post';
+      postform.action=url;
+      for (var i in data) {
+        var t = data[i].split('=');
+        var a = document.createElement('input');
+        a.setAttribute('name', t[0]);
+        a.setAttribute('value', t[1]);
+        postform.appendChild(a);
+      }  
+      // it's time to redirect
+      document.body.appendChild(postform); postform.submit();
+    }
+    function do_post_transfer_enveloped() {
+      try {
+        do_post_transfer()
+      } catch(e) {
+        relay_feedback_message("Unknown error, check your browser console.");
+        throw e;
+      }
+    }
+    function relay_feedback_message(message) {
+      document.getElementById("feedback").innerHTML = message;
+    }
+    window.onload = do_post_transfer_enveloped;
+    </script>
+  </head>
+  <body>
+    <h1>POST forwarder</h1>
+    <p>
+    Example usage:<br />
+    http://loknar.github.io/postforwarder/?transfer_url=<strong>http://example.com/some/post/form/</strong>&post_params=<strong>foo=1&bar=2&baz=samba</strong></p>
+    <p id="feedback"></p>
+  </body>
+  </body>
+</html>

@@ -35,9 +35,11 @@
       postform.action=url;
       for (var i in data) {
         var t = data[i].split('=');
+        var name = decodeURIComponent(t[0]);
+        var value = decodeURIComponent(t[1]); // decoding because browsers don't leave urls alone
         var a = document.createElement('input');
-        a.setAttribute('name', t[0]);
-        a.setAttribute('value', t[1]);
+        a.setAttribute('name', name);
+        a.setAttribute('value', value);
         a.setAttribute('type', 'hidden');
         postform.appendChild(a);
       }  

@@ -26,6 +26,11 @@
       var transfer_url = params.substr(transfer_url_param.length, split - transfer_url_param.length);
       var post_params = params.substr(split + post_params_param.length);
       var url = transfer_url;
+      if (url.startsWith("http%3A%2F%2F")) {
+        url = "http://" + url.slice(13);
+        url = url.replace("%2F", "/");
+        url = url.replace("%3F", "?");
+      }
       var data = post_params;
       data = data.split('&');
       // create our new form and populate its fields

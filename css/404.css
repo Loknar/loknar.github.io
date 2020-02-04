@@ -1,0 +1,40 @@
+html, body{  
+    height: 100%;
+}
+
+body {
+	position: block;
+    background: url("/images/another_castle.png") no-repeat center bottom;
+    background-size: cover;
+    text-align: center;
+}
+
+/* Source: https://fontlibrary.org/en/font/press-start-2p */
+@font-face {
+    font-family: 'PressStart2PRegular';
+    src: url('/font/PressStart2PRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    font-family: 'PressStart2PRegular';
+    font-size: 32px;
+    padding-bottom: 20px;
+    color: #ffffff;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+p {
+    font-family: 'PressStart2PRegular';
+    font-size: 18px;
+    padding-bottom: 20px;
+    color: #ffffff;
+    position: relative;
+    top: 42%;
+    transform: translateY(-50%);
+    padding-left: 5px;
+    padding-right:; 5px;
+}
